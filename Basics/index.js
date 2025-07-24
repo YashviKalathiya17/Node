@@ -1,6 +1,4 @@
-// const http =
-
-
+// Create a basic server
 const { log } = require("console");
 const http = require("http");
 

@@ -17,14 +17,17 @@
 
 // Another Way:---
 
-const http = require('http')
+// const http = require('http')
 
-const port = 6060
+// const port = 6060
 
-const server=   http.createServer((req,res)=>{
-    res.end("Hello User! welcome to the Node");
-})
+// const server=   http.createServer((req,res)=>{
+//     res.end("Hello User! welcome to the Node");
+// })
 
-server.listen(port,(err)=>{
-    !err?console.log(`server running on port ${port}`):null
-})
+// server.listen(port,(err)=>{
+//     !err?console.log(`server running on port ${port}`):null
+// })
+
+
+console.log("hello world!!");

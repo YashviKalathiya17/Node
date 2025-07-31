@@ -6,9 +6,9 @@
 // h1 Hello #{name}
 
 // const express = require('express');
-//const app = express();
+// const app = express();
 
-//app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
 
 
 // HandleBars--Handlebars is a logic-less templating engine for JavaScript.

@@ -21,6 +21,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/moviedb")
 app.use("/movies", movieRoutes);
 
 // Start server
-app.listen(5000, () =>
-  console.log("🚀 Server running on http://localhost:5000")
+app.listen(5002, () =>
+  console.log("🚀 Server running on http://localhost:5002")
 );

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Blog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+  <h1 class="mb-4">Simple Blog CRUD</h1>
+
+  <!-- Create Blog Form -->
+  <form id="blogForm" class="mb-4">
+    <input type="hidden" id="blogId">
+    <div class="mb-2">
+      <input type="text" id="title" class="form-control" placeholder="Blog Title" required>
+    </div>
+    <div class="mb-2">
+      <textarea id="content" class="form-control" placeholder="Blog Content" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Blog</button>
+  </form>
+
+  <!-- Blog List -->
+  <ul id="blogList" class="list-group"></ul>
+
+  <script>
+    const blogForm = document.getElementById("blogForm");
+    const blogList = document.getElementById("blogList");
+    const blogId = document.getElementById("blogId");
+
+    // Fetch Blogs
+    async function loadBlogs() {
+      const res = await fetch("/api/blogs");
+      const blogs = await res.json();
+      blogList.innerHTML = "";
+      blogs.forEach(blog => {
+        blogList.innerHTML += `
+          <li class="list-group-item">
+            <h5>${blog.title}</h5>
+            <p>${blog.content}</p>
+            <button class="btn btn-sm btn-warning" onclick="editBlog('${blog._id}','${blog.title}','${blog.content}')">Edit</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteBlog('${blog._id}')">Delete</button>
+          </li>`;
+      });
+    }
+
+    // Create / Update Blog
+    blogForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        title: document.getElementById("title").value,
+        content: document.getElementById("content").value
+      };
+      if (blogId.value) {
+        await fetch(`/api/blogs/${blogId.value}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+      } else {
+        await fetch("/api/blogs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+      }
+      blogForm.reset();
+      blogId.value = "";
+      loadBlogs();
+    });
+
+    // Edit Blog
+    function editBlog(id, title, content) {
+      document.getElementById("title").value = title;
+      document.getElementById("content").value = content;
+      blogId.value = id;
+    }
+
+    // Delete Blog
+    async function deleteBlog(id) {
+      await fetch(`/api/blogs/${id}`, { method: "DELETE" });
+      loadBlogs();
+    }
+
+    loadBlogs();
+  </script>
+</body>
+</html>

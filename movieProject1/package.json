@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "movieproject1",
   "version": "1.0.0",
   "main": "index.js",
@@ -14,6 +15,13 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "mongoose": "^8.18.1",
+=======
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+>>>>>>> 74631db6722f5e1afccae0796cf9934c44d6166a
     "nodemon": "^3.1.10"
   }
 }

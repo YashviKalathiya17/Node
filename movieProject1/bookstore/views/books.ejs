@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Books</title>
+</head>
+<body>
+  <h2>📚 All Books</h2>
+  <a href="/books/add">➕ Add Book</a>
+  <ul>
+    <% books.forEach(book => { %>
+      <li>
+        <strong><%= book.title %></strong> by <%= book.author %> 
+        - ₹<%= book.price %> [<%= book.category %>] 
+        | Stock: <%= book.stock %>
+        <br>
+        <a href="/books/edit/<%= book._id %>">✏️ Edit</a> | 
+        <a href="/books/delete/<%= book._id %>" onclick="return confirm('Delete this book?')">🗑️ Delete</a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

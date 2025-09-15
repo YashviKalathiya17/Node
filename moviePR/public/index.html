@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie CRUD</title>
+  <!-- Minimal Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+
+  <div class="container">
+    <h1 class="mb-4">Movie Project</h1>
+
+    <!-- Add Movie Form -->
+    <form id="movieForm" class="row g-2 mb-4">
+      <div class="col-md-4">
+        <input type="text" id="name" class="form-control" placeholder="Movie Name" required>
+      </div>
+      <div class="col-md-4">
+        <input type="text" id="releaseDate" class="form-control" placeholder="Release Date" required>
+      </div>
+      <div class="col-md-2">
+        <input type="number" id="rate" class="form-control" placeholder="Rate" required>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-light border w-100">Add</button>
+      </div>
+    </form>
+
+    <!-- Movie List -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Movie Name</th>
+          <th>Release Date</th>
+          <th>Rate</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="movieList"></tbody>
+    </table>
+  </div>
+
+  <!-- Minimal Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const apiUrl = "/movies";
+
+    async function loadMovies() {
+      const res = await fetch(apiUrl);
+      const movies = await res.json();
+      const list = document.getElementById("movieList");
+      list.innerHTML = "";
+      movies.forEach(m => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${m.name}</td>
+          <td>${m.releaseDate}</td>
+          <td>₹${m.rate}</td>
+          <td>
+            <button class="btn btn-sm btn-light border me-1" onclick="updateMovie('${m._id}')">Update</button>
+            <button class="btn btn-sm btn-light border" onclick="deleteMovie('${m._id}')">Delete</button>
+          </td>
+        `;
+        list.appendChild(row);
+      });
+    }
+
+    document.getElementById("movieForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const movie = {
+        name: document.getElementById("name").value,
+        releaseDate: document.getElementById("releaseDate").value,
+        rate: document.getElementById("rate").value
+      };
+      await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(movie)
+      });
+      loadMovies();
+      e.target.reset();
+    });
+
+    async function deleteMovie(id) {
+      await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+      loadMovies();
+    }
+
+    async function updateMovie(id) {
+      const name = prompt("New Movie Name:");
+      const releaseDate = prompt("New Release Date:");
+      const rate = prompt("New Rate:");
+      if (!name || !releaseDate || !rate) return;
+
+      await fetch(`${apiUrl}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, releaseDate, rate })
+      });
+      loadMovies();
+    }
+
+    loadMovies();
+  </script>
+</body>
+</html>

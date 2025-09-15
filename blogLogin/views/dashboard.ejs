@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h2>Welcome <%= user.username %> | <a href="/logout">Logout</a></h2>
+<a href="/posts/create">Create New Post</a>
+<h3>Your Posts</h3>
+<ul>
+<% posts.forEach(post => { %>
+    <li>
+        <strong><%= post.title %></strong> 
+        - <a href="/posts/edit/<%= post._id %>">Edit</a> 
+        - <a href="/posts/delete/<%= post._id %>">Delete</a>
+        <p><%= post.content %></p>
+    </li>
+<% }) %>
+</ul>
+</body>
+</html>

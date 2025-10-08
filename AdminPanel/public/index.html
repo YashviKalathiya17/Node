@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: #111827;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 22px;
+            color: #f59e0b;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #cbd5e1;
+            padding: 12px 20px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .sidebar a:hover {
+            background: #1e293b;
+            color: #fbbf24;
+        }
+
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .header {
+            background: #fff;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #111827;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        table th {
+            background: #f9fafb;
+            font-weight: bold;
+        }
+
+        .btn {
+            background: #2563eb;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="#">🏠 Dashboard</a>
+        <a href="#">👥 Users</a>
+        <a href="#">📦 Products</a>
+        <a href="#">🛒 Orders</a>
+        <a href="#">📊 Reports</a>
+        <a href="#">⚙️ Settings</a>
+        <a href="#">🚪 Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Dashboard</h1>
+            <button class="btn">+ Add New</button>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>1,245</p>
+            </div>
+            <div class="card">
+                <h3>Total Orders</h3>
+                <p>356</p>
+            </div>
+            <div class="card">
+                <h3>Revenue</h3>
+                <p>$12,480</p>
+            </div>
+            <div class="card">
+                <h3>Pending</h3>
+                <p>42</p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Yashvi Kalathiya</td>
+                    <td>yashvi@example.com</td>
+                    <td>Admin</td>
+                    <td>Active</td>
+                    <td><button class="btn">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Shruti Patel</td>
+                    <td>shruti@example.com</td>
+                    <td>Manager</td>
+                    <td>Active</td>
+                    <td><button class="btn">Edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

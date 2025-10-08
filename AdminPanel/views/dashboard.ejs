@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+</head>
+<body>
+  <h2>Welcome to Admin Panel</h2>
+  <a href="/logout">Logout</a>
+
+  <h3>Add Product</h3>
+  <form method="POST" action="/add">
+    <input type="text" name="name" placeholder="Product Name" required>
+    <input type="number" name="price" placeholder="Price" required>
+    <button type="submit">Add</button>
+  </form>
+
+  <h3>All Products</h3>
+  <table border="1" cellpadding="5">
+    <tr><th>Name</th><th>Price</th><th>Actions</th></tr>
+    <% products.forEach(p => { %>
+      <tr>
+        <td><%= p.name %></td>
+        <td><%= p.price %></td>
+        <td>
+          <a href="/edit/<%= p._id %>">Edit</a> |
+          <a href="/delete/<%= p._id %>">Delete</a>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>

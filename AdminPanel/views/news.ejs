@@ -1,0 +1,13 @@
+<h2>Latest News</h2>
+<a href="/news/generate">📰 Fetch New Headline</a>
+<table border="1" cellpadding="5">
+  <tr><th>Title</th><th>Description</th><th>Source</th><th>Action</th></tr>
+  <% newsList.forEach(n => { %>
+    <tr>
+      <td><%= n.title %></td>
+      <td><%= n.description %></td>
+      <td><%= n.source %></td>
+      <td><a href="/news/delete/<%= n._id %>">🗑️ Delete</a></td>
+    </tr>
+  <% }) %>
+</table>

@@ -1,0 +1,12 @@
+<h2>Jokes</h2>
+<a href="/jokes/generate">➕ Generate Joke</a>
+<table border="1" cellpadding="5">
+  <tr><th>Setup</th><th>Punchline</th><th>Action</th></tr>
+  <% jokes.forEach(j => { %>
+    <tr>
+      <td><%= j.setup %></td>
+      <td><%= j.punchline %></td>
+      <td><a href="/jokes/delete/<%= j._id %>">🗑️ Delete</a></td>
+    </tr>
+  <% }) %>
+</table>

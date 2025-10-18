@@ -1,0 +1,17 @@
+<h2>Weather</h2>
+<form action="/weather/generate/<%= city %>" method="get">
+  <input type="text" name="city" placeholder="Enter city name" required>
+  <button type="submit">Generate Weather</button>
+</form>
+
+<table border="1" cellpadding="5">
+  <tr><th>City</th><th>Temp</th><th>Condition</th><th>Action</th></tr>
+  <% weatherData.forEach(w => { %>
+    <tr>
+      <td><%= w.city %></td>
+      <td><%= w.temperature %></td>
+      <td><%= w.condition %></td>
+      <td><a href="/weather/delete/<%= w._id %>">🗑️ Delete</a></td>
+    </tr>
+  <% }) %>
+</table>

@@ -1,4 +1,4 @@
-# TaskApp
+# TaskApp - To run These App
 
 1. Copy `.env.example` to `.env` and fill values (MONGO_URI and JWT_SECRET).
 2. `npm install`

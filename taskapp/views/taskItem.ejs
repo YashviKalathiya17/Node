@@ -1,0 +1,14 @@
+<div class="task-card">
+  <h3><%= task.title %></h3>
+  <p><%= task.description || '' %></p>
+  <% if(task.category){ %><small>Category: <%= task.category.name ? task.category.name : (task.category.name || '') %></small><% } %>
+  <div class="meta">
+    <span><strong>Status:</strong> <%= task.completed ? 'Done' : 'Open' %></span>
+    <% if(user && (user.role === 'admin' || user.id === (task.user ? (task.user._id||task.user).toString() : ''))) { %>
+      <a href="/tasks/edit/<%= task._id %>">Edit</a>
+      <form action="/tasks/delete/<%= task._id %>?_method=DELETE" method="POST" style="display:inline">
+        <button type="submit">Delete</button>
+      </form>
+    <% } %>
+  </div>
+</div>

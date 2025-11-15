@@ -1,0 +1,11 @@
+<h2><%= user && user.role === 'admin' ? 'Tasks (Admin view)' : 'My Tasks' %></h2>
+<a class="btn" href="/tasks/add">+ Add Task</a>
+<div class="tasks">
+  <% if(tasks && tasks.length){ %>
+    <% tasks.forEach(function(t){ %>
+      <%- include('taskItem', { task: t, user: user }) %>
+    <% }) %>
+  <% } else { %>
+    <p>No tasks found.</p>
+  <% } %>
+</div>

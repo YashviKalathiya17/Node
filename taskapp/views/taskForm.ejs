@@ -1,0 +1,21 @@
+<h2><%= task ? 'Edit Task' : 'Add Task' %></h2>
+<form action="<%= task ? ('/tasks/edit/' + task._id + '?_method=PUT') : '/tasks/add' %>" method="POST">
+  <label>Title</label>
+  <input type="text" name="title" value="<%= task ? task.title : '' %>" required />
+
+  <label>Description</label>
+  <textarea name="description"><%= task ? task.description : '' %></textarea>
+
+  <label>Category</label>
+  <select name="category">
+    <option value="">-- None --</option>
+    <% categories.forEach(function(c){ %>
+      <option value="<%= c._id %>" <%= task && task.category && (task.category.toString()===c._id.toString()) ? 'selected': '' %>><%= c.name %></option>
+    <% }) %>
+  </select>
+
+  <label>Completed</label>
+  <input type="checkbox" name="completed" <%= task && task.completed ? 'checked' : '' %> />
+
+  <button type="submit">Save</button>
+</form>

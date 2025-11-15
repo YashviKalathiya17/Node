@@ -1,0 +1,7 @@
+<h1>Welcome to TaskApp</h1>
+<p>Minimalist task management with roles and JWT auth.</p>
+<% if(!user){ %>
+  <p><a href="/register">Register</a> or <a href="/login">Login</a></p>
+<% } else { %>
+  <p><a href="/tasks">Go to your tasks</a></p>
+<% } %>

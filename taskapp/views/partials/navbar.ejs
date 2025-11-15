@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <a class="brand" href="/">TaskApp</a>
+  </div>
+  <div class="nav-right">
+    <% if(user){ %>
+      <span class="greet">Hi, <%= user.username %></span>
+      <a href="/tasks">My Tasks</a>
+      <a href="/tasks/add">Add Task</a>
+      <% if(user.role === 'admin'){ %>
+        <a href="/admin/all-tasks">All Tasks</a>
+      <% } %>
+      <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    <% } %>
+  </div>
+</nav>

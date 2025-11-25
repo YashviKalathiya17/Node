@@ -5,4 +5,4 @@
 3. `npm run dev` or `npm start`
 4. Visit http://localhost:5000
 
-Default: Register a new user. To create admin, register with role 'admin'.
+Default: Register a new user. To create admin, register with role 'admin'..
